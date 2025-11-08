@@ -252,14 +252,12 @@ a {
   font-size: 1rem;
 }
 
-.filter-chips,
 .scroll-row {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-.chip,
 .chip-outline {
   border-radius: 999px;
   border: 1px solid var(--navy);
@@ -267,12 +265,6 @@ a {
   background: transparent;
   font-weight: 600;
   cursor: pointer;
-}
-
-.chip.active {
-  background: var(--teal);
-  border-color: var(--teal);
-  color: white;
 }
 
 .chip-outline {
@@ -298,11 +290,11 @@ a {
 .advanced-filters {
   display: flex;
   gap: 24px;
-  padding: 18px 24px;
+  padding: 14px 18px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background: rgba(245, 242, 234, 0.6);
-  margin-bottom: 18px;
+  margin: 12px 0 18px;
 }
 
 .filter-column {
@@ -316,14 +308,20 @@ a {
 
 .filter-column label {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
+  font-size: 0.9rem;
+}
+
+.filter-column input {
+  accent-color: var(--navy);
+  margin: 0;
 }
 
 .filter-title {
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .card-grid {
