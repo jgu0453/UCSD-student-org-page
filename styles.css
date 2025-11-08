@@ -343,14 +343,16 @@ a {
 
 .advanced-filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px 24px;
-  padding: 16px 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 20px;
+  padding: 16px 20px;
   border: 1px solid rgba(0, 43, 92, 0.18);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.96);
   margin: 20px 0 18px;
   color: var(--charcoal);
+  width: 100%;
+  max-width: 860px;
 }
 
 .advanced-filters[hidden] {
@@ -365,16 +367,20 @@ a {
 }
 
 .filter-column label {
-  display: flex;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  column-gap: 8px;
   align-items: center;
   color: var(--charcoal);
+  line-height: 1.35;
 }
 
 .filter-column input {
   accent-color: var(--navy);
   margin: 0;
   flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
 
 .filter-title {
