@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UCSD Student Orgs | My Orgs</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-dashboard">
+  <header class="site-header">
+    <div class="logo">UCSD Orgs</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a class="active" href="my-orgs.html">My Orgs</a>
+    </nav>
+    <button class="btn btn-outline">Log Out</button>
+  </header>
+
+  <main>
+    <div class="notice-banner">
+      Signed in as demo user. Authentication will be required in production.
+    </div>
+
+    <section class="dashboard-hero">
+      <div>
+        <p class="eyebrow">Dashboard</p>
+        <h1>Welcome back, Maya</h1>
+        <p>Here’s what’s coming up with your organizations this week.</p>
+      </div>
+      <div class="stat-row">
+        <article class="stat-card">
+          <p class="stat-label">Orgs joined</p>
+          <p class="stat-value">4</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Meetings this week</p>
+          <p class="stat-value">3</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Unread notifications</p>
+          <p class="stat-value">5</p>
+        </article>
+      </div>
+      <button class="btn btn-primary">Join New Org</button>
+    </section>
+
+    <section class="dashboard-body">
+      <div class="column-main">
+        <div class="section-heading">
+          <h2>Your organizations</h2>
+          <a class="link-arrow" href="#">Manage memberships</a>
+        </div>
+
+        <article class="org-panel">
+          <header>
+            <div>
+              <h3>Design Co.</h3>
+              <p class="meta">Product design club · 241 members</p>
+            </div>
+            <span class="badge">2 messages</span>
+          </header>
+          <ul>
+            <li>Studio sync · Oct 18 · 5:00 PM · Jacobs B210</li>
+            <li>Portfolio review night · Oct 21 · 7:00 PM</li>
+          </ul>
+        </article>
+
+        <article class="org-panel">
+          <header>
+            <div>
+              <h3>UCSD Surf Club</h3>
+              <p class="meta">Sports · 96 members</p>
+            </div>
+            <span class="badge badge-teal">Upcoming fair</span>
+          </header>
+          <ul>
+            <li>Sunrise paddle · Oct 19 · Tourmaline Beach</li>
+            <li>Equipment fitting · Oct 23 · Canyonview Pool</li>
+          </ul>
+        </article>
+
+        <article class="org-panel">
+          <header>
+            <div>
+              <h3>Triton Service Corps</h3>
+              <p class="meta">Service & Advocacy · 180 members</p>
+            </div>
+            <span class="badge">1 task</span>
+          </header>
+          <ul>
+            <li>Park cleanup shift · Oct 20 · 9:00 AM</li>
+            <li>Fundraising brief · Oct 25 · Zoom</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="column-side">
+        <div class="section-heading">
+          <h2>Notifications</h2>
+        </div>
+        <ul class="notification-list">
+          <li>
+            <p><strong>Design Co.</strong> posted new workshop resources.</p>
+            <span class="meta">10 minutes ago</span>
+          </li>
+          <li>
+            <p><strong>Surf Club</strong> added you to the competition roster.</p>
+            <span class="meta">1 hour ago</span>
+          </li>
+          <li>
+            <p><strong>Service Corps</strong> requested volunteer preferences survey.</p>
+            <span class="meta">Yesterday</span>
+          </li>
+        </ul>
+
+        <div class="section-heading compact">
+          <h3>Upcoming meetings & fairs</h3>
+        </div>
+        <ul class="schedule-list">
+          <li>
+            <div>
+              <p>Leadership huddle</p>
+              <span class="meta">Oct 18 · 4:30 PM · Zoom</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p>Club fair volunteer shift</p>
+              <span class="meta">Oct 19 · 12:00 PM · PC West</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p>Service Day planning call</p>
+              <span class="meta">Oct 22 · 6:00 PM · Virtual</span>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Questions? Contact your Student Organizations Advisor.</p>
+  </footer>
+</body>
+</html>

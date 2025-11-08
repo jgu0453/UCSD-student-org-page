@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UCSD Student Orgs | Explore</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-explore">
+  <header class="site-header">
+    <div class="logo">UCSD Orgs</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a class="active" href="explore.html">Explore</a>
+      <a href="my-orgs.html">My Orgs</a>
+    </nav>
+    <button class="btn btn-outline">Log In</button>
+  </header>
+
+  <main>
+    <section class="search-panel">
+      <div>
+        <h1>Explore student organizations</h1>
+        <p>Search 800+ communities across UC San Diego and filter by interest.</p>
+      </div>
+
+      <div class="search-controls">
+        <label class="sr-only" for="search-orgs">Search student orgs</label>
+        <input id="search-orgs" type="search" placeholder="Search by name, keyword, or leader" />
+        <div class="filter-chips">
+          <button class="chip active">Fraternities & Sororities</button>
+          <button class="chip">Sports & Recreation</button>
+          <button class="chip">Cultural & Identity</button>
+          <button class="chip">Service & Advocacy</button>
+          <button class="chip">Arts & Media</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h2>Popular right now</h2>
+        <a class="link-arrow" href="#">View directory</a>
+      </div>
+      <div class="card-grid">
+        <article class="org-card">
+          <div class="org-avatar">TC</div>
+          <h3>Triton Consulting Group</h3>
+          <p>Student-run firm offering pro-bono strategy projects for San Diego nonprofits.</p>
+          <div class="tag-row">
+            <span class="tag">Professional</span>
+            <span class="tag">Business</span>
+          </div>
+          <button class="btn btn-secondary">View Details</button>
+        </article>
+        <article class="org-card">
+          <div class="org-avatar">KDC</div>
+          <h3>Korean Dance Crew</h3>
+          <p>Performance group hosting weekly workshops, auditions, and charity showcases.</p>
+          <div class="tag-row">
+            <span class="tag">Arts</span>
+            <span class="tag">Cultural</span>
+          </div>
+          <button class="btn btn-secondary">View Details</button>
+        </article>
+        <article class="org-card">
+          <div class="org-avatar">WIB</div>
+          <h3>Women in Bioengineering</h3>
+          <p>Networking, mentorship, and lab tours connecting female-identifying engineers.</p>
+          <div class="tag-row">
+            <span class="tag">STEM</span>
+            <span class="tag">Mentorship</span>
+          </div>
+          <button class="btn btn-secondary">View Details</button>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h2>Browse by category</h2>
+      </div>
+      <div class="scroll-row">
+        <button class="chip-outline">Academic & Professional</button>
+        <button class="chip-outline">Greek Life</button>
+        <button class="chip-outline">Cultural</button>
+        <button class="chip-outline">Recreation & Sports</button>
+        <button class="chip-outline">Performance</button>
+        <button class="chip-outline">Service</button>
+        <button class="chip-outline">Faith-Based</button>
+        <button class="chip-outline">Media & Publications</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Need help finding an org? Email soc@ucsd.edu</p>
+  </footer>
+</body>
+</html>
