@@ -22,6 +22,10 @@ body {
   line-height: 1.6;
 }
 
+body.page-explore {
+  background: linear-gradient(180deg, #f5f2ea 0%, #eef2fb 45%, #f5f2ea 100%);
+}
+
 main {
   width: min(1200px, 92vw);
   margin: 0 auto;
@@ -244,12 +248,28 @@ a {
   margin-bottom: 40px;
 }
 
+.page-explore .search-panel {
+  background: linear-gradient(120deg, rgba(0, 43, 92, 0.95), rgba(0, 43, 92, 0.82));
+  border-top: 6px solid var(--gold);
+  color: white;
+}
+
+.page-explore .search-panel h1,
+.page-explore .search-panel p {
+  color: white;
+}
+
 .search-panel input {
   width: 100%;
   border-radius: 999px;
   border: 1px solid var(--border);
   padding: 0.9rem 1.25rem;
   font-size: 1rem;
+  background: white;
+}
+
+.page-explore .search-panel input {
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .scroll-row {
@@ -273,6 +293,11 @@ a {
   background: rgba(255, 255, 255, 0.7);
 }
 
+.page-explore .chip-outline {
+  border-color: rgba(0, 43, 92, 0.4);
+  background: rgba(255, 200, 69, 0.18);
+}
+
 .search-row {
   display: flex;
   gap: 12px;
@@ -281,20 +306,26 @@ a {
 }
 
 .btn-filter {
-  border: 1px solid var(--navy);
-  background: var(--sand);
+  border: 1px solid var(--gold);
+  background: var(--gold);
   color: var(--navy);
   white-space: nowrap;
+  box-shadow: var(--shadow);
 }
 
 .advanced-filters {
   display: flex;
   gap: 24px;
-  padding: 14px 18px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: rgba(245, 242, 234, 0.6);
-  margin: 12px 0 18px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  border: 1px solid rgba(0, 43, 92, 0.15);
+  border-radius: 18px;
+  background: rgba(245, 242, 234, 0.95);
+  margin: 20px 0 18px;
+}
+
+.advanced-filters[hidden] {
+  display: none;
 }
 
 .filter-column {
@@ -308,7 +339,7 @@ a {
 
 .filter-column label {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
   font-size: 0.9rem;
 }
@@ -342,6 +373,10 @@ a {
   gap: 12px;
 }
 
+.page-explore .org-card {
+  border-top: 6px solid var(--gold);
+}
+
 .org-avatar {
   width: 54px;
   height: 54px;
@@ -352,6 +387,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.page-explore .org-avatar {
+  background: rgba(0, 43, 92, 0.15);
+  color: var(--navy);
 }
 
 .tag-row {
