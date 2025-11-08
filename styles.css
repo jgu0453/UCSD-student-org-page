@@ -250,7 +250,6 @@ a {
   border: 1px solid var(--border);
   padding: 0.9rem 1.25rem;
   font-size: 1rem;
-  margin: 18px 0;
 }
 
 .filter-chips,
@@ -280,6 +279,51 @@ a {
   border-color: rgba(0, 43, 92, 0.25);
   color: var(--navy);
   background: rgba(255, 255, 255, 0.7);
+}
+
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 18px 0;
+}
+
+.btn-filter {
+  border: 1px solid var(--navy);
+  background: var(--sand);
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.advanced-filters {
+  display: flex;
+  gap: 24px;
+  padding: 18px 24px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(245, 242, 234, 0.6);
+  margin-bottom: 18px;
+}
+
+.filter-column {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.filter-column label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.filter-title {
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
 }
 
 .card-grid {
@@ -447,6 +491,20 @@ a {
 
   .nav-links {
     flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .advanced-filters {
+    flex-direction: column;
+  }
+
+  .search-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-filter {
+    width: 100%;
     justify-content: center;
   }
 }

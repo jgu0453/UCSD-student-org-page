@@ -26,7 +26,34 @@
 
       <div class="search-controls">
         <label class="sr-only" for="search-orgs">Search student orgs</label>
-        <input id="search-orgs" type="search" placeholder="Search by name, keyword, or leader" />
+        <div class="search-row">
+          <input id="search-orgs" type="search" placeholder="Search by name, keyword, or leader" />
+          <button class="btn btn-filter" type="button" aria-expanded="false" aria-controls="advanced-filters">
+            Advanced Filters
+          </button>
+        </div>
+        <div id="advanced-filters" class="advanced-filters" hidden>
+          <div class="filter-column">
+            <p class="filter-title">Organization type</p>
+            <label><input type="checkbox" /> Academic & Professional</label>
+            <label><input type="checkbox" /> Cultural & Identity</label>
+            <label><input type="checkbox" /> Greek Life</label>
+            <label><input type="checkbox" /> Media & Publications</label>
+          </div>
+          <div class="filter-column">
+            <p class="filter-title">Participation level</p>
+            <label><input type="checkbox" /> Competitive / Tryout</label>
+            <label><input type="checkbox" /> Open Membership</label>
+            <label><input type="checkbox" /> Volunteer Based</label>
+            <label><input type="checkbox" /> Virtual Friendly</label>
+          </div>
+          <div class="filter-column">
+            <p class="filter-title">Meeting location</p>
+            <label><input type="checkbox" /> On campus</label>
+            <label><input type="checkbox" /> Off campus</label>
+            <label><input type="checkbox" /> Hybrid</label>
+          </div>
+        </div>
         <div class="filter-chips">
           <button class="chip active">Fraternities & Sororities</button>
           <button class="chip">Sports & Recreation</button>
@@ -96,5 +123,19 @@
   <footer class="site-footer">
     <p>Need help finding an org? Email soc@ucsd.edu</p>
   </footer>
+  <script>
+    const filterButton = document.querySelector('.btn-filter');
+    const advancedFilters = document.getElementById('advanced-filters');
+
+    filterButton?.addEventListener('click', () => {
+      const isHidden = advancedFilters.hasAttribute('hidden');
+      if (isHidden) {
+        advancedFilters.removeAttribute('hidden');
+      } else {
+        advancedFilters.setAttribute('hidden', '');
+      }
+      filterButton.setAttribute('aria-expanded', String(isHidden));
+    });
+  </script>
 </body>
 </html>
