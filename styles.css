@@ -350,7 +350,7 @@ a {
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.96);
   margin: 20px 0 18px;
-  color: var(--charcoal);
+  color: #111;
   width: 100%;
   max-width: 860px;
 }
@@ -371,7 +371,7 @@ a {
   grid-template-columns: 18px 1fr;
   column-gap: 8px;
   align-items: center;
-  color: var(--charcoal);
+  color: #111;
   line-height: 1.35;
 }
 
