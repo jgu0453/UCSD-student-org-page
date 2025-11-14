@@ -126,6 +126,10 @@ function setupExploreSearch() {
   const cards = Array.from(document.querySelectorAll('[data-org-card]'));
   const activeFiltersWrap = document.getElementById('active-filters');
   const filterContainer = document.getElementById('advanced-filters');
+  const resultsSection = document.getElementById('search-results');
+  const resultsGrid = document.getElementById('results-grid');
+  const resultsCount = document.getElementById('results-count');
+  const resultsEmpty = document.getElementById('results-empty');
 
   if (!searchInput || !searchButton || cards.length === 0) {
     console.warn('Explore search unavailable: missing input/button/cards');
@@ -223,12 +227,65 @@ function setupExploreSearch() {
   }
 
   function applyFilters() {
+    const matches = [];
     cards.forEach(card => {
       const searchBlob = (card.dataset.search || '').toLowerCase();
       const matchesKeyword = !state.keyword || searchBlob.includes(state.keyword);
       const matchesFilters = cardMatchesFilters(card);
-      card.hidden = !(matchesKeyword && matchesFilters);
+      const visible = matchesKeyword && matchesFilters;
+      card.hidden = !visible;
+      if (visible) {
+        matches.push(card);
+      }
     });
+    updateResults(matches);
+  }
+
+  function hasActiveFilters() {
+    if (state.keyword) return true;
+    return Object.values(state.filters).some(set => set && set.size);
+  }
+
+  function updateResults(matches) {
+    if (!resultsSection || !resultsGrid || !resultsCount || !resultsEmpty) return;
+    if (!hasActiveFilters()) {
+      resultsSection.hidden = true;
+      return;
+    }
+    resultsSection.hidden = false;
+    resultsCount.textContent = `${matches.length} result${matches.length === 1 ? '' : 's'}`;
+    if (!matches.length) {
+      resultsGrid.innerHTML = '';
+      resultsEmpty.hidden = false;
+      return;
+    }
+    resultsEmpty.hidden = true;
+    resultsGrid.innerHTML = matches
+      .map(card => {
+        const title = card.querySelector('h3')?.textContent || 'Organization';
+        const body = card.querySelector('p')?.textContent || '';
+        const tags = Array.from(card.querySelectorAll('.tag'))
+          .map(tag => `<span class="tag">${tag.textContent}</span>`)
+          .join('');
+        const org = card.dataset.org || title;
+        const description = card.dataset.description || body;
+        const tagList = card.dataset.tagsList || Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent).join(', ');
+        return `
+          <article class="org-card result-card">
+            <h3>${title}</h3>
+            <p>${description}</p>
+            <div class="tag-row">${tags}</div>
+            <button class="btn btn-secondary view-details"
+              data-org="${org}"
+              data-description="${description}"
+              data-tags="${tagList}">
+              View Details
+            </button>
+          </article>
+        `;
+      })
+      .join('');
+    setupOrgDetailPanel();
   }
 
   applyFilters();

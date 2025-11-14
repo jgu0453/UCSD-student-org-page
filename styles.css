@@ -474,6 +474,22 @@ a {
   cursor: pointer;
 }
 
+.search-results {
+  margin: 20px 0 40px;
+}
+
+.search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.result-card {
+  padding: 20px;
+  border-left: 4px solid var(--gold);
+}
+
 /* Extra safety: higher-specificity dark override for filter titles within the dark header */
 .page-explore .advanced-filters .filter-title { color: #111; }
 
