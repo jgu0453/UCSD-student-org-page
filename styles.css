@@ -303,7 +303,7 @@ a {
   background: var(--navy);
   color: white;
   border-top: 4px solid var(--gold);
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .footer-links {

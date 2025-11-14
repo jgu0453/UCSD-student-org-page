@@ -159,6 +159,7 @@ function setupExploreSearch() {
   };
 
   searchButton.addEventListener('click', updateKeyword);
+  searchInput.addEventListener('input', updateKeyword);
   searchInput.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
       event.preventDefault();
