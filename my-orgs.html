@@ -42,7 +42,7 @@
           <p class="stat-value">5</p>
         </article>
       </div>
-      <button class="btn btn-primary">Join New Org</button>
+      <button class="btn btn-primary" id="join-org-btn">Join New Org</button>
     </section>
 
     <section class="dashboard-body">
@@ -144,5 +144,21 @@
   <footer class="site-footer">
     <p>Questions? Contact your Student Organizations Advisor.</p>
   </footer>
+
+  <section class="join-drawer" id="join-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <h3>Quick add an organization</h3>
+      <button class="modal-close" data-close aria-label="Close join drawer">&times;</button>
+    </div>
+    <p>Search for an organization to send a join request or RSVP to an upcoming meeting.</p>
+    <label class="sr-only" for="join-search">Search organizations</label>
+    <input id="join-search" type="text" placeholder="Search org by name or tag" />
+    <div class="drawer-actions">
+      <button class="btn btn-secondary" type="button">Request Invite</button>
+      <button class="btn btn-outline" type="button" data-close>Maybe later</button>
+    </div>
+  </section>
+
+  <script src="scripts.js"></script>
 </body>
 </html>

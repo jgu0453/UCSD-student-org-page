@@ -23,7 +23,7 @@
         <p class="eyebrow">PC West · Fall Quarter</p>
         <h1>Sign up for the PC West Club Fair</h1>
         <p>Reserve your slot to meet student org leaders, grab swag, and discover the communities waiting for you.</p>
-        <button class="btn btn-primary">Reserve Fair Slot</button>
+        <button class="btn btn-primary" id="reserve-button">Reserve Fair Slot</button>
       </div>
       <div class="hero-card-list">
         <article class="info-card">
@@ -122,5 +122,31 @@
       <a href="#">Accessibility</a>
     </div>
   </footer>
+
+  <div class="modal" id="reserve-modal" aria-hidden="true" role="dialog" aria-labelledby="reserve-title">
+    <div class="modal-content">
+      <button class="modal-close" data-close aria-label="Close reservation modal">×</button>
+      <p class="eyebrow">PC West Fair</p>
+      <h2 id="reserve-title">Reserve a Fair Slot</h2>
+      <p>Select a day above, then confirm your reservation. We’ll email you a QR code for check-in.</p>
+      <form class="modal-form">
+        <label>
+          Preferred Day
+          <select>
+            <option>Tuesday · Oct 15</option>
+            <option>Wednesday · Oct 16</option>
+            <option>Thursday · Oct 17</option>
+          </select>
+        </label>
+        <label>
+          UCSD Email
+          <input type="email" placeholder="triton@ucsd.edu" required />
+        </label>
+        <button type="button" class="btn btn-primary" data-close>Hold My Spot</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
 </body>
 </html>

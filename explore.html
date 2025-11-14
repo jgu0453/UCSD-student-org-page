@@ -71,7 +71,12 @@
             <span class="tag">Professional</span>
             <span class="tag">Business</span>
           </div>
-          <button class="btn btn-secondary">View Details</button>
+          <button
+            class="btn btn-secondary view-details"
+            data-org="Triton Consulting Group"
+            data-description="Boutique consulting org offering pro-bono strategy projects, alumni mentorship, and weekly case workshops."
+            data-tags="Professional, Business"
+          >View Details</button>
         </article>
         <article class="org-card">
           <div class="org-avatar">KDC</div>
@@ -81,7 +86,12 @@
             <span class="tag">Arts</span>
             <span class="tag">Cultural</span>
           </div>
-          <button class="btn btn-secondary">View Details</button>
+          <button
+            class="btn btn-secondary view-details"
+            data-org="Korean Dance Crew"
+            data-description="Campus-wide team offering K-pop inspired choreography sessions, auditions, and collaborations."
+            data-tags="Arts, Cultural"
+          >View Details</button>
         </article>
         <article class="org-card">
           <div class="org-avatar">WIB</div>
@@ -91,7 +101,12 @@
             <span class="tag">STEM</span>
             <span class="tag">Mentorship</span>
           </div>
-          <button class="btn btn-secondary">View Details</button>
+          <button
+            class="btn btn-secondary view-details"
+            data-org="Women in Bioengineering"
+            data-description="Community of bioengineering students coordinating mentorship, lab tours, and conference travel."
+            data-tags="STEM, Mentorship"
+          >View Details</button>
         </article>
       </div>
     </section>
@@ -116,19 +131,16 @@
   <footer class="site-footer">
     <p>Need help finding an org? Email soc@ucsd.edu</p>
   </footer>
-  <script>
-    const filterButton = document.querySelector('.btn-filter');
-    const advancedFilters = document.getElementById('advanced-filters');
 
-    filterButton?.addEventListener('click', () => {
-      const isHidden = advancedFilters.hasAttribute('hidden');
-      if (isHidden) {
-        advancedFilters.removeAttribute('hidden');
-      } else {
-        advancedFilters.setAttribute('hidden', '');
-      }
-      filterButton.setAttribute('aria-expanded', String(isHidden));
-    });
-  </script>
+  <aside class="org-detail-panel" id="org-detail" aria-hidden="true">
+    <div class="detail-header">
+      <h3 class="detail-title">Choose an organization</h3>
+      <button class="modal-close" data-close aria-label="Close organization details">&times;</button>
+    </div>
+    <p class="detail-body">Select "View Details" on a card to preview application steps, officer info, and meeting cadence.</p>
+    <div class="detail-tags"></div>
+  </aside>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
