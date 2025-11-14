@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UCSD Student Orgs | Log In</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-login">
+  <header class="site-header">
+    <div class="logo">UCSD Orgs</div>
+    <nav class="nav-links" data-primary-nav>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="my-orgs.html" data-auth-link hidden>My Orgs</a>
+    </nav>
+    <button class="btn btn-outline" data-auth-button>Log In</button>
+  </header>
+
+  <main class="login-main">
+    <section class="login-card">
+      <p class="eyebrow">Member access</p>
+      <h1>Log in to manage your orgs</h1>
+      <p class="meta">Use your UCSD email so we can personalize your dashboard.</p>
+
+      <form class="login-form" id="login-form">
+        <label>
+          Full name
+          <input type="text" name="name" placeholder="Triton Student" required />
+        </label>
+        <label>
+          UCSD email
+          <input type="email" name="email" placeholder="triton@ucsd.edu" required />
+        </label>
+        <button type="submit" class="btn btn-primary">Continue to My Orgs</button>
+      </form>
+      <p class="meta small">By continuing you agree to share your org memberships with SOC staff.</p>
+    </section>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

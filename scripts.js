@@ -1,9 +1,93 @@
+const AUTH_KEY = 'orgsAuth';
+
 document.addEventListener('DOMContentLoaded', () => {
+  enforcePrivateRoutes();
+  initAuthUI();
+  hydrateUserName();
+  setupLoginForm();
   setupReserveModal();
   setupAdvancedFilters();
   setupOrgDetailPanel();
   setupJoinDrawer();
 });
+
+function getAuthData() {
+  try {
+    const raw = localStorage.getItem(AUTH_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function isAuthenticated() {
+  return Boolean(getAuthData());
+}
+
+function enforcePrivateRoutes() {
+  if (document.body.classList.contains('page-dashboard') && !isAuthenticated()) {
+    window.location.href = 'login.html';
+  }
+}
+
+function initAuthUI() {
+  const authed = isAuthenticated();
+  document.querySelectorAll('[data-auth-link]').forEach(link => {
+    link.hidden = !authed;
+  });
+
+  const authButton = document.querySelector('[data-auth-button]');
+  if (!authButton) return;
+
+  if (authed) {
+    authButton.textContent = 'Log Out';
+    authButton.addEventListener('click', () => {
+      localStorage.removeItem(AUTH_KEY);
+      window.location.href = 'index.html';
+    });
+  } else {
+    authButton.textContent = 'Log In';
+    authButton.addEventListener('click', () => {
+      if (!window.location.pathname.endsWith('/login.html') && !window.location.pathname.endsWith('login.html')) {
+        window.location.href = 'login.html';
+      }
+    });
+  }
+}
+
+function hydrateUserName() {
+  const data = getAuthData();
+  if (!data?.name) return;
+  document.querySelectorAll('[data-user-name]').forEach(node => {
+    node.textContent = data.name;
+  });
+}
+
+function setupLoginForm() {
+  const form = document.getElementById('login-form');
+  if (!form) return;
+
+  if (isAuthenticated()) {
+    window.location.href = 'my-orgs.html';
+    return;
+  }
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const name = (formData.get('name') || '').toString().trim();
+    const email = (formData.get('email') || '').toString().trim();
+    if (!name || !email) {
+      alert('Please provide both your name and UCSD email.');
+      return;
+    }
+    localStorage.setItem(
+      AUTH_KEY,
+      JSON.stringify({ name, email, timestamp: Date.now() })
+    );
+    window.location.href = 'my-orgs.html';
+  });
+}
 
 function setupReserveModal() {
   const modal = document.getElementById('reserve-modal');

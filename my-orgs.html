@@ -9,12 +9,12 @@
 <body class="page-dashboard">
   <header class="site-header">
     <div class="logo">UCSD Orgs</div>
-    <nav class="nav-links">
+    <nav class="nav-links" data-primary-nav>
       <a href="index.html">Home</a>
       <a href="explore.html">Explore</a>
-      <a class="active" href="my-orgs.html">My Orgs</a>
+      <a class="active" href="my-orgs.html" data-auth-link hidden>My Orgs</a>
     </nav>
-    <button class="btn btn-outline">Log Out</button>
+    <button class="btn btn-outline" data-auth-button>Log Out</button>
   </header>
 
   <main>
@@ -25,7 +25,7 @@
     <section class="dashboard-hero">
       <div>
         <p class="eyebrow">Dashboard</p>
-        <h1>Welcome back, Jonathan</h1>
+        <h1>Welcome back, <span data-user-name>Jonathan</span></h1>
         <p>Here’s what’s coming up with your organizations this week.</p>
       </div>
       <div class="stat-row">
