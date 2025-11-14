@@ -502,15 +502,6 @@ a {
   padding-bottom: 8px;
 }
 
-.notice-banner {
-  background: rgba(255, 200, 69, 0.2);
-  border: 1px solid rgba(255, 200, 69, 0.6);
-  border-radius: 16px;
-  padding: 12px 18px;
-  color: var(--navy);
-  margin-bottom: 24px;
-}
-
 .dashboard-hero {
   background: white;
   border-radius: 28px;
@@ -668,8 +659,7 @@ a {
 
 .org-detail-panel,
 .join-drawer {
-  position: fixed;
-  inset: auto 32px 32px auto;
+  position: absolute;
   width: min(360px, 90vw);
   background: white;
   border-radius: 20px;
@@ -682,6 +672,7 @@ a {
   pointer-events: none;
   transform: translateY(8px);
   transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
 }
 
 .modal .modal-content {
@@ -710,6 +701,9 @@ a {
   font-size: 1.4rem;
   cursor: pointer;
   color: var(--navy);
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }
 
 .modal-close:hover {

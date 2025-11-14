@@ -139,6 +139,7 @@ function setupOrgDetailPanel() {
         .map(tag => `<span class="tag">${tag.trim()}</span>`)
         .join('');
 
+      positionFloatingPanel(panel, button);
       openLayer(panel);
     });
   });
@@ -153,7 +154,10 @@ function setupJoinDrawer() {
   const trigger = document.getElementById('join-org-btn');
   if (!drawer || !trigger) return;
 
-  trigger.addEventListener('click', () => openLayer(drawer));
+  trigger.addEventListener('click', () => {
+    positionFloatingPanel(drawer, trigger);
+    openLayer(drawer);
+  });
   drawer.querySelectorAll('[data-close]').forEach(btn =>
     btn.addEventListener('click', () => closeLayer(drawer))
   );
@@ -167,4 +171,19 @@ function openLayer(element) {
 function closeLayer(element) {
   element?.classList.remove('is-visible');
   element?.setAttribute('aria-hidden', 'true');
+}
+
+function positionFloatingPanel(panel, trigger) {
+  if (!panel || !trigger) return;
+  const rect = trigger.getBoundingClientRect();
+  const panelWidth = panel.offsetWidth || 320;
+  const viewportWidth = window.innerWidth;
+  let left = window.scrollX + rect.left;
+  if (left + panelWidth > window.scrollX + viewportWidth - 16) {
+    left = window.scrollX + viewportWidth - panelWidth - 16;
+  }
+  left = Math.max(window.scrollX + 16, left);
+  const top = window.scrollY + rect.bottom + 12;
+  panel.style.left = `${left}px`;
+  panel.style.top = `${top}px`;
 }
