@@ -28,30 +28,34 @@
         <label class="sr-only" for="search-orgs">Search student orgs</label>
         <div class="search-row">
           <input id="search-orgs" type="search" placeholder="Search by name, keyword, or leader" />
+          <button class="btn btn-secondary search-button" type="button" id="search-button">Search</button>
           <button class="btn btn-filter" type="button" aria-expanded="false" aria-controls="advanced-filters">
-            Advanced Filters
+            Filters
           </button>
         </div>
+        <div class="active-filters" id="active-filters" hidden></div>
         <div id="advanced-filters" class="advanced-filters" hidden>
           <div class="filter-column">
             <p class="filter-title">Organization type</p>
-            <label><input type="checkbox" /> Academic & Professional</label>
-            <label><input type="checkbox" /> Cultural & Identity</label>
-            <label><input type="checkbox" /> Greek Life</label>
-            <label><input type="checkbox" /> Media & Publications</label>
+            <label><input type="checkbox" value="academic" data-filter-group="type" data-filter-label="Academic & Professional" /> Academic & Professional</label>
+            <label><input type="checkbox" value="cultural" data-filter-group="type" data-filter-label="Cultural & Identity" /> Cultural & Identity</label>
+            <label><input type="checkbox" value="recreation" data-filter-group="type" data-filter-label="Recreation & Sports" /> Recreation & Sports</label>
+            <label><input type="checkbox" value="greek" data-filter-group="type" data-filter-label="Greek Life" /> Greek Life</label>
+            <label><input type="checkbox" value="service" data-filter-group="type" data-filter-label="Service & Advocacy" /> Service & Advocacy</label>
+            <label><input type="checkbox" value="media" data-filter-group="type" data-filter-label="Media & Publications" /> Media & Publications</label>
           </div>
           <div class="filter-column">
             <p class="filter-title">Participation level</p>
-            <label><input type="checkbox" /> Competitive / Tryout</label>
-            <label><input type="checkbox" /> Open Membership</label>
-            <label><input type="checkbox" /> Volunteer Based</label>
-            <label><input type="checkbox" /> Virtual Friendly</label>
+            <label><input type="checkbox" value="competitive" data-filter-group="participation" data-filter-label="Competitive / Tryout" /> Competitive / Tryout</label>
+            <label><input type="checkbox" value="open" data-filter-group="participation" data-filter-label="Open Membership" /> Open Membership</label>
+            <label><input type="checkbox" value="volunteer" data-filter-group="participation" data-filter-label="Volunteer Based" /> Volunteer Based</label>
+            <label><input type="checkbox" value="virtual" data-filter-group="participation" data-filter-label="Virtual Friendly" /> Virtual Friendly</label>
           </div>
           <div class="filter-column">
             <p class="filter-title">Meeting location</p>
-            <label><input type="checkbox" /> On campus</label>
-            <label><input type="checkbox" /> Off campus</label>
-            <label><input type="checkbox" /> Hybrid</label>
+            <label><input type="checkbox" value="on-campus" data-filter-group="location" data-filter-label="On campus" /> On campus</label>
+            <label><input type="checkbox" value="off-campus" data-filter-group="location" data-filter-label="Off campus" /> Off campus</label>
+            <label><input type="checkbox" value="hybrid" data-filter-group="location" data-filter-label="Hybrid" /> Hybrid</label>
           </div>
         </div>
       </div>
@@ -63,7 +67,7 @@
         <a class="link-arrow" href="#">View directory</a>
       </div>
       <div class="card-grid">
-        <article class="org-card">
+        <article class="org-card" data-org-card data-search="triton consulting group student-run firm professional business nonprofits strategy" data-type="academic" data-participation="competitive" data-location="on-campus">
           <div class="org-avatar">TC</div>
           <h3>Triton Consulting Group</h3>
           <p>Student-run firm offering pro-bono strategy projects for San Diego nonprofits.</p>
@@ -78,7 +82,7 @@
             data-tags="Professional, Business"
           >View Details</button>
         </article>
-        <article class="org-card">
+        <article class="org-card" data-org-card data-search="korean dance crew choreography arts cultural workshops performances k-pop" data-type="cultural" data-participation="open" data-location="on-campus">
           <div class="org-avatar">KDC</div>
           <h3>Korean Dance Crew</h3>
           <p>Performance group hosting weekly workshops, auditions, and charity showcases.</p>
@@ -93,7 +97,7 @@
             data-tags="Arts, Cultural"
           >View Details</button>
         </article>
-        <article class="org-card">
+        <article class="org-card" data-org-card data-search="women in bioengineering mentorship stem conference lab tours" data-type="academic" data-participation="open" data-location="on-campus">
           <div class="org-avatar">WIB</div>
           <h3>Women in Bioengineering</h3>
           <p>Networking, mentorship, and lab tours connecting female-identifying engineers.</p>
@@ -106,6 +110,36 @@
             data-org="Women in Bioengineering"
             data-description="Community of bioengineering students coordinating mentorship, lab tours, and conference travel."
             data-tags="STEM, Mentorship"
+          >View Details</button>
+        </article>
+        <article class="org-card" data-org-card data-search="global health brigades volunteering medical trips service latin america" data-type="service" data-participation="volunteer" data-location="off-campus">
+          <div class="org-avatar">GHB</div>
+          <h3>Global Health Brigades</h3>
+          <p>Leads service trips focused on preventative care and public health in Latin America.</p>
+          <div class="tag-row">
+            <span class="tag">Service</span>
+            <span class="tag">Health</span>
+          </div>
+          <button
+            class="btn btn-secondary view-details"
+            data-org="Global Health Brigades"
+            data-description="Student-run service program organizing preventative health brigades and fundraising efforts."
+            data-tags="Service, Health"
+          >View Details</button>
+        </article>
+        <article class="org-card" data-org-card data-search="triton esports gaming tournaments league of legends rocket league" data-type="recreation" data-participation="competitive" data-location="hybrid">
+          <div class="org-avatar">TES</div>
+          <h3>Triton Esports</h3>
+          <p>Competitive and casual gaming community hosting scrims, tournaments, and LAN events.</p>
+          <div class="tag-row">
+            <span class="tag">Recreation</span>
+            <span class="tag">Esports</span>
+          </div>
+          <button
+            class="btn btn-secondary view-details"
+            data-org="Triton Esports"
+            data-description="UCSD’s official esports program with varsity teams, workshops, and gaming socials."
+            data-tags="Recreation, Esports"
           >View Details</button>
         </article>
       </div>

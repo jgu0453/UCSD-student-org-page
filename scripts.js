@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLoginForm();
   setupReserveModal();
   setupAdvancedFilters();
+  setupExploreSearch();
   setupOrgDetailPanel();
   setupJoinDrawer();
 });
@@ -117,6 +118,114 @@ function setupAdvancedFilters() {
     }
     filterButton.setAttribute('aria-expanded', String(isHidden));
   });
+}
+
+function setupExploreSearch() {
+  const searchInput = document.getElementById('search-orgs');
+  const searchButton = document.getElementById('search-button');
+  const cards = Array.from(document.querySelectorAll('[data-org-card]'));
+  const activeFiltersWrap = document.getElementById('active-filters');
+  const filterContainer = document.getElementById('advanced-filters');
+
+  if (!searchInput || !searchButton || cards.length === 0) return;
+
+  const state = { keyword: '', filters: {} };
+  const filterInputs = {};
+
+  const registerFilterInput = input => {
+    const group = input.dataset.filterGroup;
+    const value = (input.value || '').toLowerCase();
+    const label = input.dataset.filterLabel || value;
+    if (!group || !value) return;
+    if (!state.filters[group]) state.filters[group] = new Set();
+    const key = `${group}:${value}`;
+    filterInputs[key] = { input, label };
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        state.filters[group].add(value);
+      } else {
+        state.filters[group].delete(value);
+      }
+      renderActiveFilters();
+      applyFilters();
+    });
+  };
+
+  filterContainer?.querySelectorAll('input[type="checkbox"]').forEach(registerFilterInput);
+
+  const updateKeyword = () => {
+    state.keyword = searchInput.value.trim().toLowerCase();
+    applyFilters();
+  };
+
+  searchButton.addEventListener('click', updateKeyword);
+  searchInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      updateKeyword();
+    }
+  });
+  searchInput.addEventListener('search', updateKeyword);
+
+  function renderActiveFilters() {
+    if (!activeFiltersWrap) return;
+    const chips = [];
+    Object.entries(state.filters).forEach(([group, values]) => {
+      values.forEach(value => {
+        const key = `${group}:${value}`;
+        const label = filterInputs[key]?.label || value;
+        chips.push({ key, label, group, value });
+      });
+    });
+    if (!chips.length) {
+      activeFiltersWrap.hidden = true;
+      activeFiltersWrap.innerHTML = '';
+      return;
+    }
+    activeFiltersWrap.hidden = false;
+    activeFiltersWrap.innerHTML = chips
+      .map(
+        chip =>
+          `<button type="button" class="filter-pill" data-filter-chip="${chip.key}">${chip.label} ×</button>`
+      )
+      .join('');
+    activeFiltersWrap.querySelectorAll('[data-filter-chip]').forEach(button => {
+      button.addEventListener('click', () => {
+        const key = button.dataset.filterChip;
+        const target = filterInputs[key];
+        if (!target) return;
+        target.input.checked = false;
+        const [group, value] = key.split(':');
+        state.filters[group]?.delete(value);
+        renderActiveFilters();
+        applyFilters();
+      });
+    });
+  }
+
+  function cardMatchesFilters(card) {
+    return Object.entries(state.filters).every(([group, values]) => {
+      if (!values || values.size === 0) return true;
+      const cardValues = (card.dataset[group] || '')
+        .split(',')
+        .map(item => item.trim().toLowerCase())
+        .filter(Boolean);
+      if (!cardValues.length) return false;
+      return cardValues.some(val => values.has(val));
+    });
+  }
+
+  function applyFilters() {
+    cards.forEach(card => {
+      const searchBlob = (card.dataset.search || '').toLowerCase();
+      const matchesKeyword = !state.keyword || searchBlob.includes(state.keyword);
+      const matchesFilters = cardMatchesFilters(card);
+      card.hidden = !(matchesKeyword && matchesFilters);
+    });
+  }
+
+  applyFilters();
+  renderActiveFilters();
 }
 
 function setupOrgDetailPanel() {

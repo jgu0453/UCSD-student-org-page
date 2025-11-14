@@ -384,12 +384,17 @@ a {
   margin: 18px 0;
 }
 
+.search-button {
+  white-space: nowrap;
+}
+
 .btn-filter {
-  border: 1px solid var(--gold);
-  background: var(--gold);
+  border: 1px solid rgba(0, 43, 92, 0.3);
+  background: white;
   color: var(--navy);
   white-space: nowrap;
-  box-shadow: var(--shadow);
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
 }
 
 .advanced-filters {
@@ -439,6 +444,26 @@ a {
   color: #111; /* stays dark against white filter panel */
   margin-bottom: 4px;
   letter-spacing: 0.02em;
+}
+
+.active-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.filter-pill {
+  border: 1px solid rgba(0, 43, 92, 0.2);
+  border-radius: 999px;
+  background: rgba(0, 43, 92, 0.05);
+  color: var(--navy);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
 }
 
 /* Extra safety: higher-specificity dark override for filter titles within the dark header */
