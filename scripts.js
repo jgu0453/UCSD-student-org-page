@@ -139,6 +139,7 @@ function setupExploreSearch() {
   console.info('Explore search ready');
 
   const state = { keyword: '', filters: {} };
+  let hasSearched = false;
   const filterInputs = {};
 
   const registerFilterInput = input => {
@@ -156,27 +157,26 @@ function setupExploreSearch() {
         state.filters[group].delete(value);
       }
       renderActiveFilters();
-      applyFilters();
     });
   };
 
   filterContainer?.querySelectorAll('input[type="checkbox"]').forEach(registerFilterInput);
 
-  const updateKeyword = () => {
+  const runSearch = () => {
     state.keyword = searchInput.value.trim().toLowerCase();
+    hasSearched = true;
     console.debug('Search keyword updated:', state.keyword);
     applyFilters();
   };
 
-  searchButton.addEventListener('click', updateKeyword);
-  searchInput.addEventListener('input', updateKeyword);
+  searchButton.addEventListener('click', runSearch);
   searchInput.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      updateKeyword();
+      runSearch();
     }
   });
-  searchInput.addEventListener('search', updateKeyword);
+  searchInput.addEventListener('search', runSearch);
 
   function renderActiveFilters() {
     if (!activeFiltersWrap) return;
@@ -227,6 +227,13 @@ function setupExploreSearch() {
   }
 
   function applyFilters() {
+    if (!hasSearched) {
+      cards.forEach(card => {
+        card.hidden = false;
+      });
+      updateResults([]);
+      return;
+    }
     const matches = [];
     cards.forEach(card => {
       const searchBlob = (card.dataset.search || '').toLowerCase();
@@ -248,7 +255,7 @@ function setupExploreSearch() {
 
   function updateResults(matches) {
     if (!resultsSection || !resultsGrid || !resultsCount || !resultsEmpty) return;
-    if (!hasActiveFilters()) {
+    if (!hasSearched || !hasActiveFilters()) {
       resultsSection.hidden = true;
       return;
     }
