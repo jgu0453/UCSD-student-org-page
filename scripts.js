@@ -127,7 +127,12 @@ function setupExploreSearch() {
   const activeFiltersWrap = document.getElementById('active-filters');
   const filterContainer = document.getElementById('advanced-filters');
 
-  if (!searchInput || !searchButton || cards.length === 0) return;
+  if (!searchInput || !searchButton || cards.length === 0) {
+    console.warn('Explore search unavailable: missing input/button/cards');
+    return;
+  }
+
+  console.info('Explore search ready');
 
   const state = { keyword: '', filters: {} };
   const filterInputs = {};
@@ -155,6 +160,7 @@ function setupExploreSearch() {
 
   const updateKeyword = () => {
     state.keyword = searchInput.value.trim().toLowerCase();
+    console.debug('Search keyword updated:', state.keyword);
     applyFilters();
   };
 
