@@ -180,15 +180,15 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-  padding: 48px 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 32px 0;
 }
 
 .hero-content {
   background: white;
-  padding: 28px;
-  border-radius: 24px;
+  padding: 22px;
+  border-radius: 20px;
   box-shadow: var(--shadow);
   border-top: 5px solid var(--gold);
 
@@ -200,7 +200,7 @@ a {
 .hero-card-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
 }
 
 .hero-card-list.in-hero {
@@ -210,18 +210,18 @@ a {
 .info-card {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px 16px;
-  box-shadow: 0 8px 20px rgba(0, 43, 92, 0.08);
-  border-top: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 10px rgba(0, 43, 92, 0.06);
+  border-top: 3px solid var(--gold);
 }
 
 .hero-gallery {
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 20px;
   height: 100%;
-  min-height: 220px;
+  min-height: 180px;
   background: linear-gradient(135deg, rgba(0,43,92,0.08), rgba(31,191,175,0.08));
   box-shadow: var(--shadow);
 }
@@ -235,18 +235,18 @@ a {
 .scroll-track {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   animation: scrollGallery 28s linear infinite;
   min-height: 100%;
 }
 
 .scroll-track img {
-  width: 190px;
-  height: 240px;
+  width: 150px;
+  height: 190px;
   object-fit: cover;
   border-radius: 18px;
   border: 1px solid rgba(0, 43, 92, 0.18);
-  box-shadow: 0 10px 24px rgba(0, 43, 92, 0.16);
+  box-shadow: 0 6px 16px rgba(0, 43, 92, 0.12);
 }
 
 @keyframes scrollGallery {
