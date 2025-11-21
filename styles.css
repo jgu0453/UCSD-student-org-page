@@ -187,14 +187,14 @@ a {
 
 .hero-content {
   background: white;
-  padding: 32px;
+  padding: 28px;
   border-radius: 24px;
   box-shadow: var(--shadow);
   border-top: 5px solid var(--gold);
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .hero-card-list {
@@ -204,14 +204,14 @@ a {
 }
 
 .hero-card-list.in-hero {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .info-card {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 14px 16px;
   box-shadow: 0 8px 20px rgba(0, 43, 92, 0.08);
   border-top: 4px solid var(--gold);
 }
@@ -221,7 +221,7 @@ a {
   overflow: hidden;
   border-radius: 24px;
   height: 100%;
-  min-height: 320px;
+  min-height: 220px;
   background: linear-gradient(135deg, rgba(0,43,92,0.08), rgba(31,191,175,0.08));
   box-shadow: var(--shadow);
 }
@@ -241,8 +241,8 @@ a {
 }
 
 .scroll-track img {
-  width: 240px;
-  height: 320px;
+  width: 190px;
+  height: 240px;
   object-fit: cover;
   border-radius: 18px;
   border: 1px solid rgba(0, 43, 92, 0.18);
