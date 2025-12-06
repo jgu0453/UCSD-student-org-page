@@ -433,3 +433,110 @@ function setupHeroCarousel() {
   setSlide(0);
   restartAuto();
 }
+
+// Calendar widget
+function setupCalendar() {
+  const panel = document.querySelector('.calendar-card');
+  if (!panel) return;
+
+  const monthLabel = panel.querySelector('[data-cal-month]');
+  const grid = panel.querySelector('[data-cal-grid]');
+  const eventsBox = panel.querySelector('[data-cal-events]');
+  const prevBtn = panel.querySelector('[data-cal-prev]');
+  const nextBtn = panel.querySelector('[data-cal-next]');
+
+  if (!monthLabel || !grid || !eventsBox || !prevBtn || !nextBtn) return;
+
+  const events = [
+    { date: '2025-10-20', title: 'Humanities & Arts Mixer', meta: '6:30 PM · PC West Terrace' },
+    { date: '2025-10-24', title: 'Leadership Bootcamp', meta: '4:00 PM · Price Center Theater' },
+    { date: '2025-10-27', title: 'Service Day Planning Sprint', meta: '10:00 AM · Virtual' },
+    { date: '2025-10-30', title: 'Org Officer Roundtable', meta: '5:00 PM · Zoom' }
+  ];
+
+  const eventMap = events.reduce((acc, evt) => {
+    acc[evt.date] = acc[evt.date] || [];
+    acc[evt.date].push(evt);
+    return acc;
+  }, {});
+
+  let current = new Date(2025, 9, 1); // October 2025 (0-based month)
+  let activeDate = null;
+
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  function render() {
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    monthLabel.textContent = current.toLocaleString('default', { month: 'long', year: 'numeric' });
+    grid.innerHTML = '';
+
+    // Day name headers
+    dayNames.forEach(name => {
+      const el = document.createElement('div');
+      el.className = 'cal-day-name';
+      el.textContent = name;
+      grid.appendChild(el);
+    });
+
+    const firstDay = new Date(year, month, 1);
+    const startOffset = firstDay.getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+    const todayStr = today.toISOString().slice(0, 10);
+
+    // Leading blanks
+    for (let i = 0; i < startOffset; i++) {
+      const blank = document.createElement('div');
+      blank.className = 'cal-cell';
+      blank.setAttribute('aria-hidden', 'true');
+      grid.appendChild(blank);
+    }
+
+    // Days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const cell = document.createElement('button');
+      cell.className = 'cal-cell';
+      cell.textContent = day;
+      const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      if (eventMap[dateStr]) cell.classList.add('has-event');
+      if (dateStr === todayStr) cell.classList.add('is-today');
+      if (dateStr === activeDate) cell.classList.add('is-active');
+      cell.addEventListener('click', () => selectDate(dateStr));
+      grid.appendChild(cell);
+    }
+  }
+
+  function selectDate(dateStr) {
+    activeDate = dateStr;
+    render();
+    showEvents(dateStr);
+  }
+
+  function showEvents(dateStr) {
+    const list = eventMap[dateStr];
+    if (!list || !list.length) {
+      eventsBox.innerHTML = '<p>No events on this date.</p>';
+      return;
+    }
+    eventsBox.innerHTML = list.map(evt => `<p><strong>${evt.title}</strong><br/><span class="meta">${evt.meta}</span></p>`).join('');
+  }
+
+  prevBtn.addEventListener('click', () => {
+    current.setMonth(current.getMonth() - 1);
+    render();
+    activeDate = null;
+    eventsBox.innerHTML = 'Choose a date to see events.';
+  });
+
+  nextBtn.addEventListener('click', () => {
+    current.setMonth(current.getMonth() + 1);
+    render();
+    activeDate = null;
+    eventsBox.innerHTML = 'Choose a date to see events.';
+  });
+
+  render();
+  const firstEventDate = events[0]?.date;
+  if (firstEventDate) selectDate(firstEventDate);
+}

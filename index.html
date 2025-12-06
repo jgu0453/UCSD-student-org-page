@@ -96,47 +96,14 @@
         <div class="section-heading">
           <h2>Calendar</h2>
         </div>
-        <div class="calendar-grid">
-          <article class="calendar-day">
-            <div class="calendar-date">
-              <span class="calendar-day-num">20</span>
-              <span class="calendar-day-mon">Oct</span>
-            </div>
-            <div>
-              <p class="calendar-title">Humanities & Arts Mixer</p>
-              <p class="meta">6:30 PM · PC West Terrace</p>
-            </div>
-          </article>
-          <article class="calendar-day">
-            <div class="calendar-date">
-              <span class="calendar-day-num">24</span>
-              <span class="calendar-day-mon">Oct</span>
-            </div>
-            <div>
-              <p class="calendar-title">Leadership Bootcamp</p>
-              <p class="meta">4:00 PM · Price Center Theater</p>
-            </div>
-          </article>
-          <article class="calendar-day">
-            <div class="calendar-date">
-              <span class="calendar-day-num">27</span>
-              <span class="calendar-day-mon">Oct</span>
-            </div>
-            <div>
-              <p class="calendar-title">Service Day Planning Sprint</p>
-              <p class="meta">10:00 AM · Virtual</p>
-            </div>
-          </article>
-          <article class="calendar-day">
-            <div class="calendar-date">
-              <span class="calendar-day-num">30</span>
-              <span class="calendar-day-mon">Oct</span>
-            </div>
-            <div>
-              <p class="calendar-title">Org Officer Roundtable</p>
-              <p class="meta">5:00 PM · Zoom</p>
-            </div>
-          </article>
+        <div class="calendar-card">
+          <div class="calendar-header">
+            <button class="cal-nav" data-cal-prev aria-label="Previous month">←</button>
+            <div class="calendar-month" data-cal-month></div>
+            <button class="cal-nav" data-cal-next aria-label="Next month">→</button>
+          </div>
+          <div class="calendar-grid" data-cal-grid></div>
+          <div class="calendar-events" data-cal-events>Choose a date to see events.</div>
         </div>
       </aside>
     </section>
