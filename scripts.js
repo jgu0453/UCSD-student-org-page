@@ -381,33 +381,57 @@ function setupHeroCarousel() {
   const slide = document.querySelector('.hero-slide');
   const prevBtn = document.querySelector('[data-hero-prev]');
   const nextBtn = document.querySelector('[data-hero-next]');
-  if (!slide || !prevBtn || !nextBtn) return;
+  const dotsWrap = document.querySelector('[data-hero-dots]');
+  if (!slide || !prevBtn || !nextBtn || !dotsWrap) return;
 
-  const setImage = (idx) => {
-    const newImg = document.createElement('img');
-    newImg.className = 'hero-slide';
-    newImg.src = images[idx];
-    newImg.alt = slide.alt || 'Gallery image';
-    newImg.id = String(idx);
-    slide.replaceWith(newImg);
-    return newImg;
+  let currentIdx = 0;
+  let autoTimer = null;
+
+  // build dots
+  dotsWrap.innerHTML = images
+    .map((_, idx) => `<button type="button" data-hero-dot="${idx}" aria-label="Go to slide ${idx + 1}"></button>`)
+    .join('');
+
+  const dotButtons = Array.from(dotsWrap.querySelectorAll('[data-hero-dot]'));
+
+  const setSlide = (idx) => {
+    currentIdx = idx;
+    slide.src = images[idx];
+    slide.id = String(idx);
+    dotButtons.forEach((btn, i) => {
+      btn.classList.toggle('is-active', i === idx);
+    });
   };
 
-  prevBtn.addEventListener('click', () => {
-    const currentIdx = parseInt(slide.id || '0', 10) || 0;
-    let nextIdx = currentIdx - 1;
-    if (nextIdx < 0) nextIdx = images.length - 1;
-    const updated = setImage(nextIdx);
-    updated.id = String(nextIdx);
-    updated.dataset.synced = 'true';
+  const gotoNext = () => {
+    const next = (currentIdx + 1) % images.length;
+    setSlide(next);
+    restartAuto();
+  };
+
+  const gotoPrev = () => {
+    const prev = (currentIdx - 1 + images.length) % images.length;
+    setSlide(prev);
+    restartAuto();
+  };
+
+  const restartAuto = () => {
+    if (autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      setSlide((currentIdx + 1) % images.length);
+    }, 15000);
+  };
+
+  prevBtn.addEventListener('click', gotoPrev);
+  nextBtn.addEventListener('click', gotoNext);
+  dotButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.heroDot || '0', 10) || 0;
+      setSlide(idx);
+      restartAuto();
+    });
   });
 
-  nextBtn.addEventListener('click', () => {
-    const currentIdx = parseInt(slide.id || '0', 10) || 0;
-    let nextIdx = currentIdx + 1;
-    if (nextIdx >= images.length) nextIdx = 0;
-    const updated = setImage(nextIdx);
-    updated.id = String(nextIdx);
-    updated.dataset.synced = 'true';
-  });
+  setSlide(0);
+  restartAuto();
 }

@@ -229,7 +229,7 @@ a {
 .hero-gallery {
   position: relative;
   border-radius: 18px;
-  min-height: 360px;
+  height: 360px;
   background: linear-gradient(135deg, rgba(0,43,92,0.08), rgba(31,191,175,0.08));
   box-shadow: var(--shadow);
   display: flex;
@@ -243,6 +243,7 @@ a {
   height: 100%;
   object-fit: cover;
   border-radius: 18px;
+  display: block;
 }
 
 .carousel-btn {
@@ -266,6 +267,34 @@ a {
 
 .carousel-btn.prev { left: 12px; }
 .carousel-btn.next { right: 12px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  border: 1px solid rgba(0, 43, 92, 0.12);
+}
+
+.carousel-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 43, 92, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0;
+  cursor: pointer;
+}
+
+.carousel-dots button.is-active {
+  background: var(--gold);
+  border-color: var(--gold);
+}
 
 .card-label {
   font-size: 0.78rem;
