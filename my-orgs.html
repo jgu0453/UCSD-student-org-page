@@ -141,19 +141,24 @@
     <p>Questions? Contact your Student Organizations Advisor.</p>
   </footer>
 
-  <section class="join-drawer" id="join-drawer" aria-hidden="true">
-    <div class="drawer-header">
-      <h3>Quick add an organization</h3>
-      <button class="modal-close" data-close aria-label="Close join drawer">&times;</button>
+  <div class="modal" id="join-modal" aria-hidden="true" role="dialog" aria-labelledby="join-modal-title">
+    <div class="modal-content">
+      <button class="modal-close" data-close aria-label="Close join modal">&times;</button>
+      <p class="eyebrow">Quick Add</p>
+      <h2 id="join-modal-title">Join a New Organization</h2>
+      <p>Search for an organization to send a join request or RSVP to an upcoming meeting.</p>
+      <form class="modal-form">
+        <label>
+          Organization name or tag
+          <input id="join-search" type="text" placeholder="Search org by name or tag" />
+        </label>
+        <div class="drawer-actions">
+          <button class="btn btn-secondary" type="button">Request Invite</button>
+          <button class="btn btn-outline" type="button" data-close>Maybe later</button>
+        </div>
+      </form>
     </div>
-    <p>Search for an organization to send a join request or RSVP to an upcoming meeting.</p>
-    <label class="sr-only" for="join-search">Search organizations</label>
-    <input id="join-search" type="text" placeholder="Search org by name or tag" />
-    <div class="drawer-actions">
-      <button class="btn btn-secondary" type="button">Request Invite</button>
-      <button class="btn btn-outline" type="button" data-close>Maybe later</button>
-    </div>
-  </section>
+  </div>
 
   <script src="scripts.js?v=2"></script>
 </body>

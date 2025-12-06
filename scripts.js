@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupAdvancedFilters();
   setupExploreSearch();
   setupOrgDetailPanel();
-  setupJoinDrawer();
+  setupJoinModal();
   setupHeroCarousel();
   setupCalendar();
 });
@@ -331,17 +331,17 @@ function setupOrgDetailPanel() {
   );
 }
 
-function setupJoinDrawer() {
-  const drawer = document.getElementById('join-drawer');
+function setupJoinModal() {
+  const modal = document.getElementById('join-modal');
   const trigger = document.getElementById('join-org-btn');
-  if (!drawer || !trigger) return;
+  if (!modal || !trigger) return;
 
-  trigger.addEventListener('click', () => {
-    positionFloatingPanel(drawer, trigger);
-    openLayer(drawer);
+  trigger.addEventListener('click', () => openLayer(modal));
+  modal.addEventListener('click', event => {
+    if (event.target === modal) closeLayer(modal);
   });
-  drawer.querySelectorAll('[data-close]').forEach(btn =>
-    btn.addEventListener('click', () => closeLayer(drawer))
+  modal.querySelectorAll('[data-close]').forEach(btn =>
+    btn.addEventListener('click', () => closeLayer(modal))
   );
 }
 
