@@ -229,11 +229,12 @@ a {
 .hero-gallery {
   position: relative;
   border-radius: 18px;
-  height: 360px;
+  height: 100%;
+  min-height: 0;
   background: linear-gradient(135deg, rgba(0,43,92,0.08), rgba(31,191,175,0.08));
   box-shadow: var(--shadow);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   overflow: hidden;
 }
