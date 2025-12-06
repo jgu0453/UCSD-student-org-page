@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupExploreSearch();
   setupOrgDetailPanel();
   setupJoinDrawer();
+  setupHeroCarousel();
 });
 
 function getAuthData() {
@@ -366,4 +367,47 @@ function positionFloatingPanel(panel, trigger) {
   const top = window.scrollY + rect.bottom + 12;
   panel.style.left = `${left}px`;
   panel.style.top = `${top}px`;
+}
+
+// Hero image carousel
+function setupHeroCarousel() {
+  const images = [
+    'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=900&q=80',
+    'https://images.unsplash.com/photo-1545239351-46e761c774f2?auto=format&fit=crop&w=900&q=80'
+  ];
+
+  const slide = document.querySelector('.hero-slide');
+  const prevBtn = document.querySelector('[data-hero-prev]');
+  const nextBtn = document.querySelector('[data-hero-next]');
+  if (!slide || !prevBtn || !nextBtn) return;
+
+  const setImage = (idx) => {
+    const newImg = document.createElement('img');
+    newImg.className = 'hero-slide';
+    newImg.src = images[idx];
+    newImg.alt = slide.alt || 'Gallery image';
+    newImg.id = String(idx);
+    slide.replaceWith(newImg);
+    return newImg;
+  };
+
+  prevBtn.addEventListener('click', () => {
+    const currentIdx = parseInt(slide.id || '0', 10) || 0;
+    let nextIdx = currentIdx - 1;
+    if (nextIdx < 0) nextIdx = images.length - 1;
+    const updated = setImage(nextIdx);
+    updated.id = String(nextIdx);
+    updated.dataset.synced = 'true';
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const currentIdx = parseInt(slide.id || '0', 10) || 0;
+    let nextIdx = currentIdx + 1;
+    if (nextIdx >= images.length) nextIdx = 0;
+    const updated = setImage(nextIdx);
+    updated.id = String(nextIdx);
+    updated.dataset.synced = 'true';
+  });
 }
