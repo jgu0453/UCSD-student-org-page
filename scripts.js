@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupOrgDetailPanel();
   setupJoinDrawer();
   setupHeroCarousel();
+  setupCalendar();
 });
 
 function getAuthData() {
