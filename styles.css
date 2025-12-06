@@ -738,11 +738,12 @@ a {
 }
 
 .tag {
-  background: var(--navy);
-  color: var(--gold);
-  padding: 0.25rem 0.8rem;
+  background: rgba(0, 43, 92, 0.08);
+  color: var(--navy);
+  padding: 0.25rem 0.65rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
+  border: 1px solid rgba(0, 43, 92, 0.16);
 }
 
 .scroll-row {
